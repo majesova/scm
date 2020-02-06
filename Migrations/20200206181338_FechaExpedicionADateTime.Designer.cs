@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Scm.Data;
 
 namespace scm.Migrations
 {
     [DbContext(typeof(ScmContext))]
-    partial class ScmContextModelSnapshot : ModelSnapshot
+    [Migration("20200206181338_FechaExpedicionADateTime")]
+    partial class FechaExpedicionADateTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,9 +50,6 @@ namespace scm.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<decimal?>("IVAAplicado")
-                        .HasColumnType("decimal(65,30)");
-
                     b.Property<int>("IdEmpleado")
                         .HasColumnType("int");
 
@@ -64,19 +63,6 @@ namespace scm.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("RegistroVales");
-                });
-
-            modelBuilder.Entity("CargaDescarga.Retencion", b =>
-                {
-                    b.Property<string>("Key")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.HasKey("Key");
-
-                    b.ToTable("Retenciones");
                 });
 
             modelBuilder.Entity("CargaDescarga.Vale", b =>

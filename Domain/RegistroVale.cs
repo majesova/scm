@@ -9,6 +9,7 @@ namespace CargaDescarga {
     {
         public int IdRegistroVale { get; set; }
         public DateTime Fecha  { get; set; }
+        public decimal? IVAAplicado { get; set; }
         /// <summary>
         /// Total sin aplicar retenciones
         /// </summary>
@@ -23,6 +24,14 @@ namespace CargaDescarga {
             // Vales.Select(x=>suma=x.Monto);
 
             return suma;
+         }
+
+         public decimal GetIVA() { 
+            return GetSubTotalVale() * (IVAAplicado.Value/100);
+         }
+
+         public decimal Total() { 
+            return GetSubTotalVale() + GetIVA();
          }
         //public Retenciones Retenciones {get;set;}
         public Empleado Empleado {get; set;}

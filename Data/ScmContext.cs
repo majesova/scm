@@ -11,6 +11,7 @@ namespace Scm.Data
     public class ScmContext : IdentityDbContext<AppUser,AppRole,string>
     {
         public DbSet<Empleado> Empleados { get; set; }
+        public DbSet<Retencion> Retenciones { get; set; }
         public DbSet<Vale> Vales { get; set; }
         public DbSet<RegistroVale> RegistroVales { get; set; }
         public ScmContext(DbContextOptions<ScmContext> options) : base(options)
@@ -41,6 +42,11 @@ namespace Scm.Data
                 x.HasKey(x=>x.FolioVale);
                 x.Property(x=>x.Monto).IsRequired();
                 x.Property(x=>x.FechaExpedicionVale).IsRequired();
+            });
+
+             builder.Entity<Retencion>(x=>{
+                x.HasKey(x=>x.Key);
+                
             });
 
             base.OnModelCreating(builder);

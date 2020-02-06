@@ -20,6 +20,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using Scm.Service;
 
 namespace Scm
 {
@@ -110,7 +111,7 @@ namespace Scm
                 options.Password.RequireUppercase = false;
             });
             #endregion
-
+           
             services.AddHttpContextAccessor();
 
             services.AddCors();
@@ -126,7 +127,11 @@ namespace Scm
             //Each request uses the same instance
             services.AddSingleton(mapper);
             //Each request creates a new instance
-            
+            services.AddScoped<RegistroValeRepository>();
+            services.AddScoped<RegistroValeService>();
+
+            services.AddScoped<RetencionRepository>();
+        
             #endregion
         }
 
